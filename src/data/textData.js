@@ -19,8 +19,8 @@ const data = [
         type: "ultext",
         title: "Skills",
         data: [
-            "C++",
             "JavaScript/HTML/CSS",
+            "C++",
             "React/React Native",
             "Node/Express",
             "Python",
@@ -32,7 +32,7 @@ const data = [
     },
     {
         type: "ulobject",
-        title: "My Experience",
+        title: "Some of my Experience",
         data: [
             {
                 title: "Capital One",
@@ -43,8 +43,8 @@ const data = [
                 description: "Developed a multi-interface fitness tracker for a Nashville nonprofit. Engineered a React front-end, tested custom APIs, spearheaded UX design discussions, beta tested with future users, and gained experience sprint planning."
             },
             {
-                title: "United State Geological Survey",
-                description: "Modified an existing codebase to suit the needs of a wildlife imagery deep learning project. Performed bug fixes, code cleanup, and feature implementation in the React codebase."
+                title: "United States Geological Survey",
+                description: "Modified an existing codebase to suit the needs of a wildlife imagery deep learning project. Performed bug fixes, code cleanup, and feature implementation in the React/TypeScript codebase."
             },
         ]
     },
@@ -52,6 +52,7 @@ const data = [
         type: "text",
         title: "Projects I've Worked on",
         data: [
+            "FlashMob...under construction",
             "As a part of a capstone course, I investigated the energy footprint of various blockchain consensus algorithms and how blockchain implementations affect the environmental and social outcomes associated with peer-to-peer microgrids that use a blockchain platform. You can read it here.",
             "Kanban: Created a simple, Trello-like task manager using Electron with a TypeScript/React frontend, Node/Express backend, and MongoDB database. Find it on my github.",
             "I researched the energy footprints of data centers with a special emphasis on the Meta data center located in Forest City, NC, to understand the hidden energy footprint of the digital world and how these data centers affect local infrastructure and socio-political landscapes.",
@@ -68,6 +69,7 @@ const data = [
             "Algorithms",
             "Program Design and Data Structures",
             "Probability and Statistics",
+            "Environment and Development",
         ]
     },
 ]
