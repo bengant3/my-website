@@ -4,7 +4,7 @@
 //projects (technical and non technical)
 //classes
 
-export const cards = [
+const data = [
     {
         type: "text",
         title: "About Me",
@@ -12,7 +12,7 @@ export const cards = [
             "🐿️Senior at Vanderbilt University in Nashville, TN.",
             "👨‍💻Studying computer science, math, and environmental studies.",
             "📍Originally from Chapel Hill, NC.",
-            "🌎Interested in...",
+            "🌎Interested in engineering software to better our relationship with our planet.",
         ]
     },
     {
@@ -71,4 +71,6 @@ export const cards = [
         ]
     },
 ]
+
+export default data;
 
