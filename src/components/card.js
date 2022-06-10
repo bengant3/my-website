@@ -1,43 +1,46 @@
 import React, { useEffect, useState } from "react"
 
-const Card = (click, cardType, cardTitle, cardData) => {
-    const [type, setType] = useState(cardType);
-    const [title, setTitle] = useState(cardTitle);
-    const [data, setData] = useState(cardData);
+const Card = ({card, click}) => {
+    const [type, setType] = useState(card.type);
+    const [title, setTitle] = useState(card.title);
+    const [data, setData] = useState(card.data);
 
     const color = (event, col) => {
         event.target.style.backgroundColor = col;
     }
 
-    //useEffect(() => {alert("click = "+JSON.stringify(click)+"\ncdata = "+typeof(cardData))}, [])
+    //useEffect(() => {alert("cdata = "+JSON.stringify(card.data))}, [])
 
     return (
-        <div style={cardStyle} onClick={() => click()}>
+        <div 
+            style={cardStyle} 
+            onClick={() => click()} 
+            onKeyDown={ev => {if(ev.key === " " || ev.key === "Enter") click();}}
+            role="button">
             <p style={titleStyle}>{title}</p>
-            <p>Helloooo from card</p>
-            {type == "ultext" && 
+            {type === "ultext" && 
                 <ul>
-                {data.map(t => <li>{t}</li>)}
+                {data.map(t => <li style={textStyle}>{t}</li>)}
                 </ul>
             }
-            {type == "ulobject" &&
+            {type === "ulobject" &&
                 <ul>
                 {data.map(o => {
                     <div>
-                    <p>{o.title}</p>
-                    <p>{o.description}</p>
+                    <p style={objectTitleStyle}>{o.title}</p>
+                    <p style={textStyle}>{o.description}</p>
                     </div>
                 })}
                 </ul>
             }
-            {type == "text" &&
-                data.map(t => <p>{t}</p>)
+            {type === "text" &&
+                data.map(t => <p style={textStyle}>{t}</p>)
             }
             <button 
                 style={buttonStyle}
                 onMouseEnter={event => {event.target.style.backgroundColor = "lightblue";}}
                 onMouseLeave={event => {event.target.style.backgroundColor = "indianred";}}>
-                    Click me
+                    {"Click me"}
             </button>
         </div>
     )
@@ -46,16 +49,17 @@ const Card = (click, cardType, cardTitle, cardData) => {
 export default Card;
 
 const cardStyle = {
-    borderRadius: 15,
+    borderRadius: 25,
     backgroundColor: "navajoWhite",
     fontFamily: "Trebuchet MS, sans-serif",
-    padding: 25,
+    padding: 20,
 }
 const titleStyle = {
     fontSize: 24,
+    color: "maroon"
 }
 const textStyle = {
-
+    color: "#520000"
 }
 const objectTitleStyle = {
 
@@ -65,6 +69,7 @@ const buttonStyle = {
     border: "none",
     marginRight: 15,
     marginBottom: 15,
+    color: "navajowhite"
 }
 
 //Icon attricution

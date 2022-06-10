@@ -4,20 +4,34 @@ import * as styles from "../styles/indexStyles"
 import data from "../data/textData"
 import { Footer } from "antd/lib/layout/layout";
 import Card from "../components/card"
-
+import CardFlipper from "../components/CardFlipper";
+import ReactCardFlip from "../components/ReactCardFlip"
 const NUM_CARDS = 5;
 
 const IndexPage = () => {
   const [cardNum, setCard] = useState(0);
+  const [clicked, setClicked] = useState(false);
   const [expanded, toggleExpand] = useState(false);
+  const [currCard, setCurrCard] = useState(data[cardNum] || {});
+  
+  const [flipped, flip] = useState(0);
 
   useEffect(() => {
-    if(cardNum >= NUM_CARDS) {
-      setCard(0);
-      toggleExpand(); 
-      alert("Cards to unfold");
-    }
+    setCurrCard(data[cardNum]);
   }, [cardNum])
+
+  useEffect(() => {
+    if(clicked) {
+      if(cardNum+1 >= NUM_CARDS) {
+        setCard(0);
+        toggleExpand(); 
+        alert("Cards to unfold");
+      } else {
+        setCard(cardNum+1);
+      }
+    }
+    setClicked(false);
+  }, [clicked])
 
   //useEffect(() => {alert(data); alert(JSON.stringify(data[0]))}, [])
 
@@ -30,22 +44,21 @@ const IndexPage = () => {
       </h1>
       <p>{cardNum}</p>
       <div style={cardContainerStyle}>
-        <Card 
-          click={() => {
-            setCard(cardNum+1);
-            alert("Card clicked");
-          }}
-          cardType={data[cardNum].type}
-          cardTitle={data[cardNum].title}
-          cardData={(() => {alert(data[cardNum].data);return data[cardNum].data;})}
+        <ReactCardFlip isFlipped={flipped} flipDirection={"horizontal"}>
+          <Card
+            click={() => flip(true)}
+            card={data[0]}
           />
-          {expanded &&
-            (() => {let a = Array(NUM_CARDS); a.shift(); return a}).map(num => {
-              <Card
-                data={data[num]}
-                />
-            }
-          )}
+          <Card
+            click={() => flip(false)}
+            card={data[1]}
+          />
+        </ReactCardFlip>
+        <Card
+          click={() => setClicked(true)}
+          card={currCard}
+        />
+        
       </div>
     </main>
   )
@@ -71,5 +84,5 @@ const pageStyles = {
 }
 const headingStyles = {
   marginTop: 0,
-  marginBottom: 64,
+  marginBottom: 10,
 }

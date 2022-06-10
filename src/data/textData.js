@@ -9,10 +9,10 @@ const data = [
         type: "text",
         title: "About Me",
         data: [
-            "🐿️Senior at Vanderbilt University in Nashville, TN.",
-            "👨‍💻Studying computer science, math, and environmental studies.",
-            "📍Originally from Chapel Hill, NC.",
-            "🌎Interested in engineering software to better our relationship with our planet.",
+            "🐿️ Senior at Vanderbilt University in Nashville, TN.",
+            "👨‍💻 Studying computer science, math, and environmental studies.",
+            "📍 Originally from Chapel Hill, NC.",
+            "🌎 Interested in engineering software to better our relationship with our planet.",
         ]
     },
     {
