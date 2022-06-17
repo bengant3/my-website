@@ -14,7 +14,7 @@ const IndexPage = () => {
   const [expanded, toggleExpand] = useState(false);
   const [currCard, setCurrCard] = useState(data[cardNum] || {});
   
-  const [flipped, flip] = useState(false);
+  const [flipped, flip] = useState(0);
 
   useEffect(() => {
     setCurrCard(data[cardNum]);
@@ -45,14 +45,22 @@ const IndexPage = () => {
       <p>{cardNum}</p>
       <p>{flipped.toString()}</p>
       <div style={cardContainerStyle}>
-        <ReactCardFlip isFlipped={flipped} flipDirection={"horizontal"}>
+        <ReactCardFlip 
+          isFlipped={flipped} 
+          flipDirection={"horizontal"}
+          infinite
+        >
           <Card
-            click={() => flip(true)}
+            click={() => flip(1)}
             card={data[0]}
           />
           <Card
-            click={() => flip(false)}
+            click={() => flip(2)}
             card={data[1]}
+          />
+          <Card
+            click={() => flip(0)}
+            card={data[2]}
           />
         </ReactCardFlip>
         <Card
