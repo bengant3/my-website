@@ -53,6 +53,7 @@ const cardStyle = {
     backgroundColor: "navajoWhite",
     fontFamily: "Trebuchet MS, sans-serif",
     padding: 20,
+    height: 300,
 }
 const titleStyle = {
     fontSize: 24,
