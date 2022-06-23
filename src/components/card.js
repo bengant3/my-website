@@ -11,6 +11,17 @@ const Card = ({card, click}) => {
 
     //useEffect(() => {alert("cdata = "+JSON.stringify(card.data))}, [])
 
+    const generateObjectList = data => {
+        let arr = [];
+        for (let i = 0; i/2 < data.length; i += 2) {
+            console.log(">>>>>>>>>i = " + i);
+            //using index instead of for/of so that title is always gauranteed before desc
+            arr[i] = <dt style={textStyle}>{data[i/2].title}</dt>;
+            arr[i+1] = <dd style={{...textStyle, color: "indianred"}}>{"\t"+data[i/2].description}</dd>;
+        }
+        return arr;
+    }
+
     return (
         <div 
             style={cardStyle} 
@@ -20,18 +31,13 @@ const Card = ({card, click}) => {
             <p style={titleStyle}>{title}</p>
             {type === "ultext" && 
                 <ul>
-                {data.map(t => <li style={textStyle}>{t}</li>)}
+                    {data.map(t => <li style={textStyle}>{t}</li>)}
                 </ul>
             }
             {type === "ulobject" &&
-                <ul>
-                {data.map(o => {
-                    <div>
-                    <p style={objectTitleStyle}>{o.title}</p>
-                    <p style={textStyle}>{o.description}</p>
-                    </div>
-                })}
-                </ul>
+                <dl style={objectList}>
+                    {generateObjectList(data)}
+                </dl>
             }
             {type === "text" &&
                 data.map(t => <p style={textStyle}>{t}</p>)
@@ -64,6 +70,9 @@ const textStyle = {
 }
 const objectTitleStyle = {
 
+}
+const objectList = {
+    listStyleType: "circle",
 }
 const buttonStyle = {
     backgroundColor: "indianred",
