@@ -14,7 +14,6 @@ const Card = ({card, click}) => {
     const generateObjectList = data => {
         let arr = [];
         for (let i = 0; i/2 < data.length; i += 2) {
-            console.log(">>>>>>>>>i = " + i);
             //using index instead of for/of so that title is always gauranteed before desc
             arr[i] = <dt style={textStyle}>{data[i/2].title}</dt>;
             arr[i+1] = <dd style={{...textStyle, color: "indianred"}}>{"\t"+data[i/2].description}</dd>;
