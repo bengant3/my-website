@@ -3,7 +3,7 @@ import reactDom from "react-dom"
 import * as styles from "../styles/indexStyles"
 import data from "../data/textData"
 import { Footer } from "antd/lib/layout/layout";
-import Card from "../components/card"
+import Card from "../components/Card"
 import CardFlipper from "../components/CardFlipper";
 import ReactCardFlip from "../components/ReactCardFlip"
 const NUM_CARDS = 5;
@@ -42,8 +42,6 @@ const IndexPage = () => {
         <p style={mainHeaderStyles}>🐯 Ben Gant</p>
         <br />
       </h1>
-      <p>{cardNum}</p>
-      <p>{flipped.toString()}</p>
       <div style={cardContainerStyle}>
         <ReactCardFlip 
           isFlipped={flipped} 
@@ -63,11 +61,6 @@ const IndexPage = () => {
             card={data[2]}
           />
         </ReactCardFlip>
-        <Card
-          click={() => setClicked(true)}
-          card={currCard}
-        />
-        
       </div>
     </main>
   )
@@ -86,7 +79,6 @@ const mainHeaderStyles = {
 const cardContainerStyle = {
   display: "flex",
   flexDirection: "column",
-  backgroundColor: "goldenrod",
 }
 const pageStyles = {
   backgroundColor: "papayaWhip",

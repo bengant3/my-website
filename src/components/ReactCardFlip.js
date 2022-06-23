@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useEffect, useState, useMemo } from 'react';
+//import data from '../data/textData';
 
 //import { ReactFlipCardProps } from '../types/index';
 
@@ -20,16 +21,27 @@ const ReactCardFlip = (props) => {
 
   const [isFlipped, setFlipped] = useState(props.isFlipped);
   const [rotation, setRotation] = useState(0);
-  const [rotateYArr, resetRotYArr] = useState([]);
+  const [rotations, setRotations] = useState([]);
+
+  const num = props.children.length;
+
+  useEffect(() => {
+    let arr = [];
+    for (let i = 0; i < num; ++i) arr.push(-180);
+    arr[0] = 0;
+    setRotations(arr);
+  }, []);
 
   useEffect(() => {
     if (props.isFlipped !== isFlipped) {
       setFlipped(props.isFlipped);
       setRotation((c) => c + 180);
+
+      let arr = rotations;
+      arr[props.isFlipped] += 180;
+      arr[(props.isFlipped + num - 1)%num] += 180;
+      setRotations(arr);
     }
-    Array(props.children.length).map(e => {
-      return `rotateY(${e == isFlipped ? 180 : 0})`
-    })
   }, [props.isFlipped]);
 
   const getContainerClassName = useMemo(() => {
@@ -62,14 +74,6 @@ const ReactCardFlip = (props) => {
     infinite ? rotation + 180 : isFlipped ? 0 : -180
     }deg)`;
 
-  // const rotateY = (num) => {
-  //   //assumes infinite
-  //   return `rotateY(${num == flipped ? 0 : 180})`
-  // }
-
-  // const rotateYArr = Array(props.children.length).map(e => {
-  //   return `rotateY(${num == isFlipped ? 0 : 180})`
-  // });
   let cardStyleTemplate = {
     WebkitBackfaceVisibility: 'hidden',
     backfaceVisibility: 'hidden',
@@ -83,24 +87,28 @@ const ReactCardFlip = (props) => {
 
   const styles = {
     back: {
-      position: isFlipped == 2 ? 'relative' : 'absolute',
-      transform: flipDirection === 'horizontal' ? backRotateY : backRotateX,
+      position: 'absolute',
+      transform: `rotateY(${rotations[2]}deg)`,
+      zIndex: isFlipped == 2 ? '2' : '1',
       ...cardStyleTemplate,
-      ...back,
+      //...back,
+
+      //absolute = zindex wins
+
     },
     middle: {
-      position: isFlipped == 1 ? 'relative' : 'absolute',
-      transform: flipDirection === 'horizontal' ? backRotateY : backRotateX,
-      zIndex: '2',
+      position: 'absolute',
+      transform: `rotateY(${rotations[1]}deg)`,
+      zIndex: isFlipped == 1 ? '2' : '1',
       ...cardStyleTemplate,
       //...middle,
     },
     front: {
-      position: isFlipped == 0 ? 'relative' : 'absolute',
-      transform: flipDirection === 'horizontal' ? frontRotateY : frontRotateX,
-      zIndex: '3',
+      position: 'absolute',
+      transform: `rotateY(${rotations[0]}deg)`,
+      zIndex: isFlipped == 0 ? '2' : '1',
       ...cardStyleTemplate,
-      ...front,
+      //...front,
     },
     container: {
       perspective: '1000px',
