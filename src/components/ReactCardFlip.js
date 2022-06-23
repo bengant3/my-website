@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { useEffect, useState, useMemo } from 'react';
-//import data from '../data/textData';
 
-//import { ReactFlipCardProps } from '../types/index';
+const NUM_CARDS = 5;
 
 const ReactCardFlip = (props) => {
   const {
-    cardStyles: {
-      back,
-      front,
-    },
+    // cardStyles: {
+    //   back,
+    //   front,
+    // },
     cardZIndex,
     containerStyle,
     containerClassName,
@@ -20,14 +19,20 @@ const ReactCardFlip = (props) => {
   } = props;
 
   const [isFlipped, setFlipped] = useState(props.isFlipped);
-  const [rotation, setRotation] = useState(0);
   const [rotations, setRotations] = useState([]);
 
   const num = props.children.length;
 
   useEffect(() => {
     let arr = [];
-    for (let i = 0; i < num; ++i) arr.push(-180);
+    for (let i = 0; i < num; ++i) {
+      arr.push(-180);
+      styles[`card${i}`] = {
+        transform: `rotateY(${rotations[i]}deg)`,
+        zIndex: isFlipped == i ? '2' : '1',
+        ...cardStyleTemplate,
+      }
+    }
     arr[0] = 0;
     setRotations(arr);
   }, []);
@@ -35,7 +40,6 @@ const ReactCardFlip = (props) => {
   useEffect(() => {
     if (props.isFlipped !== isFlipped) {
       setFlipped(props.isFlipped);
-      setRotation((c) => c + 180);
 
       let arr = rotations;
       arr[props.isFlipped] += 180;
@@ -53,26 +57,8 @@ const ReactCardFlip = (props) => {
   }, [containerClassName]);
 
   const getComponent = (key) => {
-    // if (props.children.length !== 2) {
-    //   throw new Error(
-    //     'Component ReactCardFlip requires 2 children to function',
-    //   );
-    // }
     return props.children[key];
   };
-
-  const frontRotateY = `rotateY(${
-    infinite ? rotation : isFlipped ? 180 : 0
-    }deg)`;
-  const backRotateY = `rotateY(${
-    infinite ? rotation + 180 : isFlipped ? 0 : -180
-    }deg)`;
-  const frontRotateX = `rotateX(${
-    infinite ? rotation : isFlipped ? 180 : 0
-    }deg)`;
-  const backRotateX = `rotateX(${
-    infinite ? rotation + 180 : isFlipped ? 0 : -180
-    }deg)`;
 
   let cardStyleTemplate = {
     WebkitBackfaceVisibility: 'hidden',
@@ -83,32 +69,35 @@ const ReactCardFlip = (props) => {
     transformStyle: 'preserve-3d',
     transition: `${flipSpeedFrontToBack}s`,
     width: '100%',
+    position: 'absolute',
   }
 
   const styles = {
-    back: {
-      position: 'absolute',
-      transform: `rotateY(${rotations[2]}deg)`,
-      zIndex: isFlipped == 2 ? '2' : '1',
-      ...cardStyleTemplate,
-      //...back,
-
-      //absolute = zindex wins
-
-    },
-    middle: {
-      position: 'absolute',
-      transform: `rotateY(${rotations[1]}deg)`,
-      zIndex: isFlipped == 1 ? '2' : '1',
-      ...cardStyleTemplate,
-      //...middle,
-    },
-    front: {
-      position: 'absolute',
+    //cardStyles: cs,
+    one: {
       transform: `rotateY(${rotations[0]}deg)`,
       zIndex: isFlipped == 0 ? '2' : '1',
       ...cardStyleTemplate,
-      //...front,
+    },
+    two: {
+      transform: `rotateY(${rotations[1]}deg)`,
+      zIndex: isFlipped == 1 ? '2' : '1',
+      ...cardStyleTemplate,
+    },
+    three: {
+      transform: `rotateY(${rotations[2]}deg)`,
+      zIndex: isFlipped == 2 ? '2' : '1',
+      ...cardStyleTemplate,
+    },
+    four: {
+      transform: `rotateY(${rotations[3]}deg)`,
+      zIndex: isFlipped == 3 ? '2' : '1',
+      ...cardStyleTemplate,
+    },
+    five: {
+      transform: `rotateY(${rotations[4]}deg)`,
+      zIndex: isFlipped == 4 ? '2' : '1',
+      ...cardStyleTemplate,
     },
     container: {
       perspective: '1000px',
@@ -127,16 +116,20 @@ const ReactCardFlip = (props) => {
       style={{ ...styles.container, ...containerStyle }}
     >
       <div className="react-card-flipper" style={styles.flipper}>
-        <div className="react-card-front" style={styles.front}>
+        <div style={styles.one}>
           {getComponent(0)}
         </div>
-
-        <div className="react-card-middle" style={styles.middle}>
+        <div style={styles.two}>
           {getComponent(1)}
         </div>
-
-        <div className="react-card-back" style={styles.back}>
+        <div style={styles.three}>
           {getComponent(2)}
+        </div>
+        <div style={styles.four}>
+          {getComponent(3)}
+        </div>
+        <div style={styles.five}>
+          {getComponent(4)}
         </div>
       </div>
     </div>
@@ -144,10 +137,10 @@ const ReactCardFlip = (props) => {
 };
 
 ReactCardFlip.defaultProps = {
-  cardStyles: {
-    back: {},
-    front: {},
-  },
+  // cardStyles: {
+  //   back: {},
+  //   front: {},
+  // },
   cardZIndex: 'auto',
   containerStyle: {},
   flipDirection: 'horizontal',

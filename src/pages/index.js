@@ -57,8 +57,16 @@ const IndexPage = () => {
             card={data[1]}
           />
           <Card
-            click={() => flip(0)}
+            click={() => flip(3)}
             card={data[2]}
+          />
+          <Card
+            click={() => flip(4)}
+            card={data[3]}
+          />
+          <Card
+            click={() => flip(0)}
+            card={data[4]}
           />
         </ReactCardFlip>
       </div>
