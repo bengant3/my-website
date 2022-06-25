@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import reactDom from "react-dom"
-import * as styles from "../styles/indexStyles"
+//import * as styles from "../styles/indexStyles"
 import data from "../data/textData"
 import { Footer } from "antd/lib/layout/layout";
 import Card from "../components/Card"
@@ -9,44 +9,42 @@ import ReactCardFlip from "../components/ReactCardFlip"
 const NUM_CARDS = 5;
 
 const IndexPage = () => {
-  const [cardNum, setCard] = useState(0);
-  const [clicked, setClicked] = useState(false);
-  const [expanded, toggleExpand] = useState(false);
-  const [currCard, setCurrCard] = useState(data[cardNum] || {});
+  const [hint, showHint] = useState(false);
+  const [initial, setInitial] = useState(true);
+  const [currCard, flip] = useState(0);
+  //const [expanded, toggleExpand] = useState(false);
   
-  const [flipped, flip] = useState(0);
+  useEffect(() => {
+    setTimeout(() => {
+      if(initial) showHint(true);
+    }, 3000);
+  }, [])
 
   useEffect(() => {
-    setCurrCard(data[cardNum]);
-  }, [cardNum])
-
-  useEffect(() => {
-    if(clicked) {
-      if(cardNum+1 >= NUM_CARDS) {
-        setCard(0);
-        toggleExpand(); 
-        alert("Cards to unfold");
-      } else {
-        setCard(cardNum+1);
-      }
-    }
-    setClicked(false);
-  }, [clicked])
-
-  //useEffect(() => {alert(data); alert(JSON.stringify(data[0]))}, [])
+    setInitial(false);
+    showHint(false);
+  }, [currCard])
 
   return (
-    <main style={pageStyles}>
+    <main style={styles.page}>
       <title>Ben Gant</title>
-      <h1 style={headingStyles}>
-        <p style={mainHeaderStyles}>🐯 Ben Gant</p>
-        <br />
+      <h1 style={styles.mainHeader}>
+        🐯 Ben Gant
       </h1>
-      <div style={cardContainerStyle}>
+      <div style={styles.linksContainer}>
+        <a style={styles.link} href="https://www.linkedin.com/in/bengant/" target="_blank">LinkedIn</a>
+        <b style={styles.linkDivider}>|</b>
+        <a style={styles.link} href="https://github.com/bengant3" target="_blank">Github</a>
+        <b style={styles.linkDivider}>|</b>
+        <a style={styles.link} href="mailto:bengant3@gmail.com" target="_blank">bengant3@gmail.com</a>
+      </div>
+      {hint && 
+        <p style={styles.hint}>Click the cards to learn more about me</p>
+      }
+      <div style={styles.cardContainer}>
         <ReactCardFlip 
-          isFlipped={flipped} 
+          isFlipped={currCard} 
           flipDirection={"horizontal"}
-          infinite
         >
           <Card
             click={() => flip(1)}
@@ -78,22 +76,48 @@ export default IndexPage
 
 // styles
 
-const mainHeaderStyles = {
-  fontSize: 60, 
-  letterSpacing: 15,
-  color: "indianred",
-  fontFamily: "Trebuchet MS, sans-serif",
-}
-const cardContainerStyle = {
-  display: "flex",
-  flexDirection: "column",
-}
-const pageStyles = {
-  backgroundColor: "papayaWhip",
-  padding: "5% 25%",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 10,
+const styles = {
+  mainHeader: {
+    fontSize: 44, 
+    fontWeight: 800,
+    letterSpacing: "1.5vw",
+    color: "indianred",
+    marginLeft: 20,
+    marginTop: 0,
+    marginBottom: 20,
+  },
+  cardContainer: {
+    height: 300,
+  },
+  page: {
+    backgroundColor: "papayaWhip",
+    padding: "5% 25%",
+  },
+  linksContainer: {
+    width: "80%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    fontSize: 18,
+    margin: 20,
+  },
+  link: {
+    color: "#36747D",
+    fontSize: 16,
+    fontWeight: 600,
+    marginRight: 15,
+  },
+  linkDivider: {
+    color: "indianred",
+    marginRight: 15,
+  },
+  hint: {
+    position: "absolute",
+    color: "indianred",
+    fontSize: 12,
+    fontWeight: 400,
+    marginTop: 290,
+    marginLeft: 30,
+    zIndex: 5,
+  },
 }

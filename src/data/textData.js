@@ -9,10 +9,10 @@ const data = [
         type: "text",
         title: "About Me",
         data: [
-            "🐿️ Senior at Vanderbilt University in Nashville, TN.",
-            "👨‍💻 Studying computer science, math, and environmental studies.",
-            "📍 Originally from Chapel Hill, NC.",
-            "🌎 Interested in engineering software to better our relationship with our planet.",
+            "Senior at Vanderbilt University in Nashville, TN.",
+            "Studying computer science, math, and environmental studies.",
+            "Originally from Chapel Hill, NC.",
+            "Interested in engineering software to better our relationship with our planet.",
         ]
     },
     {
@@ -51,14 +51,30 @@ const data = [
         ]
     },
     {
-        type: "text",
+        type: "ullink",
         title: "Projects I've Worked on",
         data: [
-            "FlashMob...under construction",
-            "As a part of a capstone course, I investigated the energy footprint of various blockchain consensus algorithms and how blockchain implementations affect the environmental and social outcomes associated with peer-to-peer microgrids that use a blockchain platform. You can read it here.",
-            "Kanban: Created a simple, Trello-like task manager using Electron with a TypeScript/React frontend, Node/Express backend, and MongoDB database. Find it on my github.",
-            "I researched the energy footprints of data centers with a special emphasis on the Meta data center located in Forest City, NC, to understand the hidden energy footprint of the digital world and how these data centers affect local infrastructure and socio-political landscapes.",
-            "Recycle Nashville: A simple React-based website that informs users about recycling best practices in Nashville, TN. Website includes an interactive quiz and Google Maps API to the nearest recycling center among other pages. Find it at thewebsiteurl.",
+            {
+                title: "Micro Scale, Macro Impact",
+                link: "",
+                description: ": an investigation into the energy footprint of different blockchain implementations and how the technology can be used in energy grids.",
+            },
+            {
+                title: "Kanban",
+                link: "https://github.com/bengant3/kanban",
+                description: ": a Trello-like task manager using Electron with a TypeScript/React frontend and Node/Express backend.",
+                
+            },
+            {
+                title: "Forest City Data Center",
+                link: "",
+                description: ": a research project about the impact, economically and environmentally, of data centers, with special attention to a case study in Forest City.",
+            },    
+            {
+                title: "Recycle Nashville",
+                link: "https://recyclenashville.gatsbyjs.io/",
+                description: ": a React-based website including local recycling info, interactive quiz built form scratch, and Google Maps integration.",
+            },
         ]
     },
     {

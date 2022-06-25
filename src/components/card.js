@@ -5,81 +5,92 @@ const Card = ({card, click}) => {
     const [title, setTitle] = useState(card.title);
     const [data, setData] = useState(card.data);
 
-    const color = (event, col) => {
-        event.target.style.backgroundColor = col;
-    }
-
-    //useEffect(() => {alert("cdata = "+JSON.stringify(card.data))}, [])
-
     const generateObjectList = data => {
         let arr = [];
         for (let i = 0; i/2 < data.length; i += 2) {
             //using index instead of for/of so that title is always gauranteed before desc
-            arr[i] = <dt style={textStyle}>{data[i/2].title}</dt>;
-            arr[i+1] = <dd style={{...textStyle, color: "indianred"}}>{"\t"+data[i/2].description}</dd>;
+            arr[i] = <dt style={styles.text}>{data[i/2].title}</dt>;
+            arr[i+1] = <dd style={{...styles.text, color: "indianred"}}>{"\t"+data[i/2].description}</dd>;
         }
         return arr;
     }
 
     return (
         <div 
-            style={cardStyle} 
+            style={styles.card} 
             onClick={() => click()} 
             onKeyDown={ev => {if(ev.key === " " || ev.key === "Enter") click();}}
-            role="button">
-            <p style={titleStyle}>{title}</p>
+            role="button"
+        >
+            <p style={styles.title}>{title}</p>
             {type === "ultext" && 
                 <ul>
-                    {data.map(t => <li style={textStyle}>{t}</li>)}
+                    {data.map(t => <li style={styles.text}>{t}</li>)}
                 </ul>
             }
             {type === "ulobject" &&
-                <dl style={objectList}>
+                <dl style={styles.objectList}>
                     {generateObjectList(data)}
                 </dl>
             }
-            {type === "text" &&
-                data.map(t => <p style={textStyle}>{t}</p>)
+            {type === "ullink" &&
+                <ul style= {styles.linkList}>
+                    {data.map(o => 
+                        <li style={styles.text}><a href={o.link} target="_blank">{o.title}</a>{o.description}</li>
+                    )}
+                </ul>            
             }
-            <button 
-                style={buttonStyle}
-                onMouseEnter={event => {event.target.style.backgroundColor = "lightblue";}}
-                onMouseLeave={event => {event.target.style.backgroundColor = "indianred";}}>
-                    {"Click me"}
-            </button>
+            {type === "text" &&
+                <ul style={{listStyleType: "emoji-list"}}>
+                    {data.map(t => <li style={{...styles.text, marginBottom: 20}}>{t}</li>)}
+                </ul>
+                
+            }
         </div>
     )
 }
 
 export default Card;
 
-const cardStyle = {
-    borderRadius: 25,
-    backgroundColor: "navajoWhite",
-    fontFamily: "Trebuchet MS, sans-serif",
-    padding: 20,
-    height: 300,
+const styles = {
+    card: {
+        borderRadius: 25,
+        backgroundColor: "navajoWhite",
+        fontFamily: "Trebuchet MS, sans-serif",
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingTop: 5,
+        height: 320,
+    },
+    title: {
+        fontSize: 20,
+        fontWeight: "bold",
+        color: "maroon",
+    },
+    text: {
+        fontSize: 15,
+        color: "#520000",
+    },
+    link: {
+        //color: "indianred",
+    },
+    linkList: {
+        listStyleType: "none", 
+        paddingLeft: 40,
+        textIndent: -40,
+    },
+    objectList: {
+        listStyleType: "circle",
+    },
+    button: {
+        backgroundColor: "indianred",
+        border: "none",
+        marginRight: 15,
+        marginBottom: 15,
+        color: "navajowhite"
+    },
 }
-const titleStyle = {
-    fontSize: 24,
-    color: "maroon"
-}
-const textStyle = {
-    color: "#520000"
-}
-const objectTitleStyle = {
 
-}
-const objectList = {
-    listStyleType: "circle",
-}
-const buttonStyle = {
-    backgroundColor: "indianred",
-    border: "none",
-    marginRight: 15,
-    marginBottom: 15,
-    color: "navajowhite"
-}
 
 //Icon attricution
 //<a href="https://www.flaticon.com/free-icons/down-arrow" title="down arrow icons">Down arrow icons created by Roundicons - Flaticon</a>

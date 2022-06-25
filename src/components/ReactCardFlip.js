@@ -27,11 +27,11 @@ const ReactCardFlip = (props) => {
     let arr = [];
     for (let i = 0; i < num; ++i) {
       arr.push(-180);
-      styles[`card${i}`] = {
-        transform: `rotateY(${rotations[i]}deg)`,
-        zIndex: isFlipped == i ? '2' : '1',
-        ...cardStyleTemplate,
-      }
+      // styles[`card${i}`] = {
+      //   transform: `rotateY(${rotations[i]}deg)`,
+      //   zIndex: isFlipped == i ? '2' : '1',
+      //   ...cardStyleTemplate,
+      // }
     }
     arr[0] = 0;
     setRotations(arr);
@@ -146,7 +146,7 @@ ReactCardFlip.defaultProps = {
   flipDirection: 'horizontal',
   flipSpeedBackToFront: 0.6,
   flipSpeedFrontToBack: 0.6,
-  infinite: false,
+  infinite: true,
   isFlipped: false,
 };
 
