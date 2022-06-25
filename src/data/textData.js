@@ -86,6 +86,7 @@ const data = [
             "Computing and the Environment",
             "Algorithms",
             "Program Design and Data Structures",
+            "Operating Systems",
             "Probability and Statistics",
             "Environment and Development",
         ]

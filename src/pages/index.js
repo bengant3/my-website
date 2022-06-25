@@ -9,21 +9,16 @@ import ReactCardFlip from "../components/ReactCardFlip"
 const NUM_CARDS = 5;
 
 const IndexPage = () => {
-  const [hint, showHint] = useState(false);
+  const [hint, showHint] = useState(true);
   const [initial, setInitial] = useState(true);
   const [currCard, flip] = useState(0);
   //const [expanded, toggleExpand] = useState(false);
-  
-  useEffect(() => {
-    setTimeout(() => {
-      if(initial) showHint(true);
-    }, 3000);
-  }, [])
 
-  useEffect(() => {
+  const handleClick = num => {
     setInitial(false);
     showHint(false);
-  }, [currCard])
+    flip(num);
+  }
 
   return (
     <main style={styles.page}>
@@ -36,7 +31,7 @@ const IndexPage = () => {
         <b style={styles.linkDivider}>|</b>
         <a style={styles.link} href="https://github.com/bengant3" target="_blank">Github</a>
         <b style={styles.linkDivider}>|</b>
-        <a style={styles.link} href="mailto:bengant3@gmail.com" target="_blank">bengant3@gmail.com</a>
+        <a style={styles.link} href="mailto:bengasetClickedflipnt3@gmail.com" target="_blank">bengant3@gmail.com</a>
       </div>
       {hint && 
         <p style={styles.hint}>Click the cards to learn more about me</p>
@@ -47,23 +42,23 @@ const IndexPage = () => {
           flipDirection={"horizontal"}
         >
           <Card
-            click={() => flip(1)}
+            click={() => handleClick(1)}
             card={data[0]}
           />
           <Card
-            click={() => flip(2)}
+            click={() => handleClick(2)}
             card={data[1]}
           />
           <Card
-            click={() => flip(3)}
+            click={() => handleClick(3)}
             card={data[2]}
           />
           <Card
-            click={() => flip(4)}
+            click={() => handleClick(4)}
             card={data[3]}
           />
           <Card
-            click={() => flip(0)}
+            click={() => handleClick(0)}
             card={data[4]}
           />
         </ReactCardFlip>
@@ -81,7 +76,7 @@ const styles = {
     fontSize: 44, 
     fontWeight: 800,
     letterSpacing: "1.5vw",
-    color: "indianred",
+    color: "maroon",
     marginLeft: 20,
     marginTop: 0,
     marginBottom: 20,

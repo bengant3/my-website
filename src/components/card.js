@@ -8,9 +8,9 @@ const Card = ({card, click}) => {
     const generateObjectList = data => {
         let arr = [];
         for (let i = 0; i/2 < data.length; i += 2) {
-            //using index instead of for/of so that title is always gauranteed before desc
-            arr[i] = <dt style={styles.text}>{data[i/2].title}</dt>;
-            arr[i+1] = <dd style={{...styles.text, color: "indianred"}}>{"\t"+data[i/2].description}</dd>;
+            //using index instead of for/of so that title is always guaranteed before desc
+            arr[i] = <dt style={{...styles.text, color: "indianred"}}>{data[i/2].title}</dt>;
+            arr[i+1] = <dd style={styles.text}>{"\t"+data[i/2].description}</dd>;
         }
         return arr;
     }
@@ -36,7 +36,20 @@ const Card = ({card, click}) => {
             {type === "ullink" &&
                 <ul style= {styles.linkList}>
                     {data.map(o => 
-                        <li style={styles.text}><a href={o.link} target="_blank">{o.title}</a>{o.description}</li>
+                        <li style={styles.text}>
+                            <a
+                                style={styles.link} 
+                                href={o.link} 
+                                target="_blank" 
+                                onClick={e => {
+                                    alert(e.toString());
+                                    e.stopPropagation()
+                                }}
+                            >
+                                {o.title}
+                            </a>
+                            {o.description}
+                        </li>
                     )}
                 </ul>            
             }
@@ -69,10 +82,10 @@ const styles = {
     },
     text: {
         fontSize: 15,
-        color: "#520000",
+        color: "maroon",
     },
     link: {
-        //color: "indianred",
+        color: "#36747D",
     },
     linkList: {
         listStyleType: "none", 
@@ -90,8 +103,3 @@ const styles = {
         color: "navajowhite"
     },
 }
-
-
-//Icon attricution
-//<a href="https://www.flaticon.com/free-icons/down-arrow" title="down arrow icons">Down arrow icons created by Roundicons - Flaticon</a>
-//<a href="https://www.flaticon.com/free-icons/next" title="next icons">Next icons created by Roundicons - Flaticon</a>
