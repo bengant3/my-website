@@ -56,7 +56,7 @@ const data = [
         data: [
             {
                 title: "Micro Scale, Macro Impact",
-                link: "",
+                link: "/static/docs/BlockchainAndMicrogrids.pdf",
                 description: ": an investigation into the energy footprint of different blockchain implementations and how the technology can be used in energy grids.",
             },
             {
@@ -67,7 +67,7 @@ const data = [
             },
             {
                 title: "Forest City Data Center",
-                link: "",
+                link: "/static/docs/ForestCity.pdf",
                 description: ": a research project about the impact, economically and environmentally, of data centers, with special attention to a case study in Forest City.",
             },    
             {

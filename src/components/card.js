@@ -42,7 +42,6 @@ const Card = ({card, click}) => {
                                 href={o.link} 
                                 target="_blank" 
                                 onClick={e => {
-                                    alert(e.toString());
                                     e.stopPropagation()
                                 }}
                             >
