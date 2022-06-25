@@ -36,7 +36,7 @@ const data = [
         data: [
             {
                 title: "Capital One",
-                description: "TBD",
+                description: "Constructing a workflow and approval monitoring system and activity tracker for a internal React/Node UI tool.",
             },
             {
                 title: "Vanderbilt Change++",
