@@ -73,6 +73,7 @@ const styles = {
         paddingLeft: 20,
         paddingRight: 20,
         paddingTop: 5,
+        marginBottom: 20,
         height: 320,
     },
     title: {

@@ -16,10 +16,13 @@ const ReactCardFlip = (props) => {
     flipSpeedFrontToBack,
     flipSpeedBackToFront,
     infinite,
+    expand,
   } = props;
 
   const [isFlipped, setFlipped] = useState(props.isFlipped);
   const [rotations, setRotations] = useState([]);
+  const [expanded, setExpanded] = useState(false);
+  const [initial, setInitial] = useState(true);
 
   const num = props.children.length;
 
@@ -40,13 +43,23 @@ const ReactCardFlip = (props) => {
   useEffect(() => {
     if (props.isFlipped !== isFlipped) {
       setFlipped(props.isFlipped);
-
-      let arr = rotations;
-      arr[props.isFlipped] += 180;
-      arr[(props.isFlipped + num - 1)%num] += 180;
-      setRotations(arr);
+      if(props.expand && !initial && props.isFlipped === NUM_CARDS) {
+        setExpanded(true);
+      } else {
+        let arr = rotations;
+        arr[props.isFlipped] += 180;
+        arr[(props.isFlipped + num - 1)%num] += 180;
+        setRotations(arr);
+      }
     }
+    setInitial(false);
   }, [props.isFlipped]);
+
+  useEffect(() => {
+    let arr = [];
+    for(let i = 0; i < NUM_CARDS; ++i) arr.push(0);
+    setRotations(arr);
+  }, [expanded])
 
   const getContainerClassName = useMemo(() => {
     let className = 'react-card-flip';
@@ -69,7 +82,6 @@ const ReactCardFlip = (props) => {
     transformStyle: 'preserve-3d',
     transition: `${flipSpeedFrontToBack}s`,
     width: '100%',
-    position: 'absolute',
   }
 
   const styles = {
@@ -77,26 +89,31 @@ const ReactCardFlip = (props) => {
     one: {
       transform: `rotateY(${rotations[0]}deg)`,
       zIndex: isFlipped == 0 ? '2' : '1',
+      position: expanded ? 'relative' : 'absolute',
       ...cardStyleTemplate,
     },
     two: {
       transform: `rotateY(${rotations[1]}deg)`,
       zIndex: isFlipped == 1 ? '2' : '1',
+      position: expanded ? 'relative' : 'absolute',
       ...cardStyleTemplate,
     },
     three: {
       transform: `rotateY(${rotations[2]}deg)`,
       zIndex: isFlipped == 2 ? '2' : '1',
+      position: expanded ? 'relative' : 'absolute',
       ...cardStyleTemplate,
     },
     four: {
       transform: `rotateY(${rotations[3]}deg)`,
       zIndex: isFlipped == 3 ? '2' : '1',
+      position: expanded ? 'relative' : 'absolute',
       ...cardStyleTemplate,
     },
     five: {
       transform: `rotateY(${rotations[4]}deg)`,
       zIndex: isFlipped == 4 ? '2' : '1',
+      position: expanded ? 'relative' : 'absolute',
       ...cardStyleTemplate,
     },
     container: {
@@ -115,6 +132,7 @@ const ReactCardFlip = (props) => {
       className={getContainerClassName}
       style={{ ...styles.container, ...containerStyle }}
     >
+      <p>{"expanded = "+expanded}</p>
       <div className="react-card-flipper" style={styles.flipper}>
         <div style={styles.one}>
           {getComponent(0)}

@@ -33,6 +33,7 @@ const IndexPage = () => {
         <b style={styles.linkDivider}>|</b>
         <a style={styles.link} href="mailto:bengasetClickedflipnt3@gmail.com" target="_blank">bengant3@gmail.com</a>
       </div>
+      <p>{currCard}</p>
       {hint && 
         <p style={styles.hint}>Click the cards to learn more about me</p>
       }
@@ -40,6 +41,7 @@ const IndexPage = () => {
         <ReactCardFlip 
           isFlipped={currCard} 
           flipDirection={"horizontal"}
+          expand
         >
           <Card
             click={() => handleClick(1)}
