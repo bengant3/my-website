@@ -15,15 +15,22 @@ const IndexPage = () => {
   //const [expanded, toggleExpand] = useState(false);
   
   useEffect(() => {
-    setTimeout(() => {
-      if(initial) showHint(true);
-    }, 3000);
+    runHint(3000);
   }, [])
 
   useEffect(() => {
     setInitial(false);
     showHint(false);
   }, [currCard])
+
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+
+  const runHint = async time => {
+    await delay(time);
+    if(initial) showHint(true);
+  }
 
   return (
     <main style={styles.page}>
