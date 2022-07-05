@@ -3,7 +3,7 @@ import reactDom from "react-dom"
 //import * as styles from "../styles/indexStyles"
 import data from "../data/textData"
 import { Footer } from "antd/lib/layout/layout";
-import Card from "../components/Card"
+import Card from "../components/Card.js"
 import CardFlipper from "../components/CardFlipper";
 import ReactCardFlip from "../components/ReactCardFlip"
 const NUM_CARDS = 5;
