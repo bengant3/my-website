@@ -28,6 +28,7 @@ const data = [
             "TypeScript",
             "Docker",
             "Electron",
+            "Mongo",
         ]
     },
     {
@@ -40,12 +41,12 @@ const data = [
             },
             {
                 title: "Vanderbilt Change++",
-                description: "Developed a multi-interface fitness tracker for a Nashville nonprofit. "
+                description: "Developed a multi-interface fitness tracker for a Nashville nonprofit. React, Rest APIs, UX design. "
                 //Engineered a React front-end, tested custom APIs, spearheaded UX design discussions, beta tested with future users, and gained experience sprint planning.
             },
             {
                 title: "United States Geological Survey",
-                description: "Modified an existing codebase to suit the needs of a wildlife imagery deep learning project."
+                description: "Modified an existing codebase to suit the needs of a wildlife imagery deep learning project. React, TypeScript. "
                 //Performed bug fixes, code cleanup, and feature implementation in the React/TypeScript codebase.
             },
         ]
