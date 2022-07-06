@@ -1,3 +1,8 @@
 node_modules/
 .cache/
-public
+
+# to include docs
+public/*
+!public/static
+public/static/*
+!public/static/docs/
