@@ -28,7 +28,7 @@ const data = [
             "TypeScript",
             "Docker",
             "Electron",
-            "Mongo",
+            "MongoDB",
         ]
     },
     {
@@ -37,17 +37,16 @@ const data = [
         data: [
             {
                 title: "Capital One",
-                description: "Constructing a workflow and approval monitoring system and activity tracker for a internal React/Node UI tool.",
+                description: "Constructing a workflow and approval monitoring system, and a user activity tracker for a internal React/Node UI tool.",
             },
             {
                 title: "Vanderbilt Change++",
-                description: "Developed a multi-interface fitness tracker for a Nashville nonprofit. React, Rest APIs, UX design. "
+                description: "Developed a multi-interface mobile fitness tracker for a Nashville nonprofit. React Native, Rest APIs, UX design. "
                 //Engineered a React front-end, tested custom APIs, spearheaded UX design discussions, beta tested with future users, and gained experience sprint planning.
             },
             {
                 title: "United States Geological Survey",
-                description: "Modified an existing codebase to suit the needs of a wildlife imagery deep learning project. React, TypeScript. "
-                //Performed bug fixes, code cleanup, and feature implementation in the React/TypeScript codebase.
+                description: "Performed bug fixes, code cleanup, and feature implementation to modify an open-source React/TypeScript codebase."
             },
         ]
     },
@@ -69,12 +68,12 @@ const data = [
             {
                 title: "Forest City Data Center",
                 link: "/static/docs/ForestCity.pdf",
-                description: ": a research project about the impact, economically and environmentally, of data centers, with special attention to a case study in Forest City.",
+                description: ": a research project about the socioeconomic and environmental impact of data centers, with special attention to a case study in Forest City, NC.",
             },    
             {
                 title: "Recycle Nashville",
                 link: "https://recyclenashville.gatsbyjs.io/",
-                description: ": a React-based website including local recycling info, interactive quiz built form scratch, and Google Maps integration.",
+                description: ": a React-based website including local recycling info, interactive quiz built from scratch, and Google Maps integration.",
             },
         ]
     },
@@ -82,7 +81,7 @@ const data = [
         type: "ultext",
         title: "Some classes I've Taken",
         data: [
-            "Software Engineering",
+            "Principles of Software Engineering",
             "Intermediate Software Design",
             "Computing and the Environment",
             "Algorithms",
